@@ -69,3 +69,14 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+
+## SSL Config
+Overriding next.js server.js
+https://github.com/nextauthjs/next-auth/issues/1324#issue-809597630
+
+Generate SSL https://gist.github.com/cecilemuller/9492b848eb8fe46d462abeb26656c4f8
+```
+openssl req -new -nodes -newkey rsa:2048 -keyout localhost.key -out localhost.csr -subj "/C=US/ST=YourState/L=YourCity/O=Example-Certificates/CN=localhost.local"
+openssl x509 -req -sha256 -days 1024 -in localhost.csr -CA RootCA.pem -CAkey RootCA.key -CAcreateserial -extfile domains.ext -out localhost.crt
+```
