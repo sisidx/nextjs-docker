@@ -1,4 +1,4 @@
-FROM node:18-alpine AS base
+FROM base-nextjs-with-ssl AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -28,10 +28,10 @@ COPY . .
 # ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN yarn build
-COPY server.js /app/.next/standalone
-COPY localhost.key /app/.next/standalone
-COPY localhost.crt /app/.next/standalone
 
+WORKDIR /app
+RUN cp /app/custom-server/server.js /app/.next/standalone
+#
 # If using npm comment out above and use below instead
 # RUN npm run build
 

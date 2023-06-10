@@ -23,8 +23,8 @@ const nextConfig = {"env":{},"webpack":null,"eslint":{"ignoreDuringBuilds":false
 process.env.__NEXT_PRIVATE_STANDALONE_CONFIG = JSON.stringify(nextConfig)
 
 const httpsOptions = {
-    key: fs.readFileSync('./localhost.key'),
-    cert: fs.readFileSync('./localhost.crt'),
+    key: fs.readFileSync('/app/ssl-certificates/ssl.key'),
+    cert: fs.readFileSync('/app/ssl-certificates/ssl.crt'),
 };
 
 createServerHandler({
@@ -59,7 +59,8 @@ createServerHandler({
         console.log(
             'Listening on port',
             currentPort,
-            'url: https://' + hostname + ':' + currentPort
+            'url: https://' + hostname + ':' + currentPort + ' or ',
+            'https://localhost:' + currentPort
         )
     });
 
